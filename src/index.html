@@ -24,16 +24,16 @@
                             class="form-control" type="text" placeholder="0" aria-label="default input example">
                          <div class="row gx-1">
                             <div class="col-3 mt-2">
-                                <button type="button" class="btn btn-dark w-100 ">(</button>  
+                                <button type="button" class="btn btn-dark w-100 "onclick="showPreviousCalculation()">Prev</button>  
                             </div>
                             <div class="col-3 mt-2">
-                                <button type="button" class="btn btn-dark w-100 ">)</button>  
+                                <button type="button" class="btn btn-dark w-100 "onclick="clearHistory()">Clr His</button>  
                             </div>
                             <div class="col-3 mt-2">
-                                <button type="button" class="btn btn-dark w-100 "> %</button>  
+                                <button type="button" class="btn btn-dark w-100 "onclick="showNextCalculation()">Next</button>  
                             </div>
                             <div class="col-3 mt-2">
-                                <button type="button" class="btn btn-dark w-100 ">AC</button>  
+                                <button type="button" class="btn btn-dark w-100 "onclick="clearDisplay()">AC</button>  
                             </div>
                             <!-- Bootstrap has 12 columns within a row,
                              and if you try to make a div does not fit within those 12 columns,
@@ -41,61 +41,58 @@
 
 
                             <div class="col-3 mt-2">
-                                <button type="button" class="btn btn-dark w-100 ">7</button>  
+                                <button type="button" class="btn btn-dark w-100 " onclick="addToDisplay('7')">7</button>  
                             </div>
                             <div class="col-3 mt-2">
-                                <button type="button" class="btn btn-dark w-100 ">8</button>  
+                                <button type="button" class="btn btn-dark w-100 "onclick="addToDisplay('8')">8</button>  
                             </div>
                             <div class="col-3 mt-2">
-                                <button type="button" class="btn btn-dark w-100 ">9</button>  
+                                <button type="button" class="btn btn-dark w-100 "onclick="addToDisplay('9')" >9</button>  
                             </div>
                             <div class="col-3 mt-2">
-                                <button type="button" class="btn btn-dark w-100 ">÷</button>  
+                                <button type="button" class="btn btn-dark w-100 "onclick="addToDisplay('/')">÷</button>  
                             </div>
 
 
                             <div class="col-3 mt-2">
-                                <button type="button" class="btn btn-dark w-100 ">4</button>  
+                                <button type="button" class="btn btn-dark w-100 "onclick="addToDisplay('4')">4</button>  
                             </div>
                             <div class="col-3 mt-2">
-                                <button type="button" class="btn btn-dark w-100 ">5</button>  
+                                <button type="button" class="btn btn-dark w-100 "onclick="addToDisplay('5')">5</button>  
                             </div>
                             <div class="col-3 mt-2">
-                                <button type="button" class="btn btn-dark w-100 ">6</button>  
+                                <button type="button" class="btn btn-dark w-100 "onclick="addToDisplay('6')">6</button>  
                             </div>
                             <div class="col-3 mt-2">
-                                <button type="button" class="btn btn-dark w-100 "> × </button>  
+                                <button type="button" class="btn btn-dark w-100 "onclick="addToDisplay('*')"> × </button>  
                             </div>
 
 
                             <div class="col-3 mt-2">
-                                <button type="button" class="btn btn-dark w-100 ">1</button>  
+                                <button type="button" class="btn btn-dark w-100 "onclick="addToDisplay('1')">1</button>  
                             </div>
                             <div class="col-3 mt-2">
-                                <button type="button" class="btn btn-dark w-100 ">2</button>  
+                                <button type="button" class="btn btn-dark w-100 "onclick="addToDisplay('2')">2</button>  
                             </div>
                             <div class="col-3 mt-2">
-                                <button type="button" class="btn btn-dark w-100 ">3</button>  
+                                <button type="button" class="btn btn-dark w-100 "onclick="addToDisplay('3')">3</button>  
                             </div>
                             <div class="col-3 mt-2">
-                                <button type="button" class="btn btn-dark w-100 "> - </button>  
+                                <button type="button" class="btn btn-dark w-100 "onclick="addToDisplay('-')"> - </button>  
                             </div>
 
                             <div class="col-3 mt-2">
-                                <button type="button" class="btn btn-dark w-100 ">0</button>  
+                                <button type="button" class="btn btn-dark w-100" onclick="addToDisplay('0')">0</button>  
                             </div>
                             <div class="col-3 mt-2">
-                                <button type="button" class="btn btn-dark w-100 ">.</button>  
+                                <button type="button" class="btn btn-dark w-100 "onclick="addToDisplay('.')">.</button>  
                             </div>
                             <div class="col-3 mt-2">
-                                <button type="button" class="btn btn-primary w-100 ">=</button>  
+                                <button type="button" class="btn btn-primary w-100  "onclick="calculate()">=</button>  
                             </div>
                             <div class="col-3 mt-2">
-                                <button type="button" class="btn btn-dark w-100 ">+</button>  
+                                <button type="button" class="btn btn-dark w-100 "onclick="addToDisplay('+')">+</button>  
                             </div>
-
-
-
 
 
 
@@ -103,7 +100,10 @@
 
 
 
-                        </div>
+
+
+
+                         </div>
                         </div>
                     </div>
                 </div>
@@ -111,5 +111,44 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+        let display = document.getElementById('cal-display');
+        let history = [];
+        let currentHistoryIndex = -1;
+        function addToDisplay(value) {
+        display.value += value;
+        }
+        function clearDisplay() {
+        display.value = '';
+        }
+        function calculate() {
+            const expression = display.value;
+            try{const result = eval(expression);
+                if (isNaN(result)) {
+                    display.value = "Undefined";}
+                else{history.push({ expression, result });
+                currentHistoryIndex = history.length - 1;
+                display.value = result;}
+                }catch(error){
+                display.value="Error"}
+                
+            }         
+        
+        function clearHistory() {
+        history = [];
+        }
+        function showPreviousCalculation() {
+        if (currentHistoryIndex > 0 && currentHistoryIndex < history.length) {
+            currentHistoryIndex--;
+            display.value = history[currentHistoryIndex].expression + " = " + history[currentHistoryIndex].result;
+        }
+        }
+        function showNextCalculation() {
+        if (currentHistoryIndex < history.length - 1) {
+            currentHistoryIndex++;
+            display.value = history[currentHistoryIndex].expression + " = " + history[currentHistoryIndex].result;
+        }
+        }
+    </script>
 </body>
 </html>
