@@ -1,2 +1,2 @@
 # Basic_Calculator
-Replica of google calculator
+calculator with history feature
